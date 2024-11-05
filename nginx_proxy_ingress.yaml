@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: nginx-proxy
+spec:
+  rules:
+  - host:
+    http:
+      paths:
+      - backend:
+          service:
+            name: nginx-proxy
+            port:
+              number: 80
+        path: /
+        pathType: Prefix

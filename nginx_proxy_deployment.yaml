@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-proxy
+spec:
+  selector:
+    matchLabels:
+      app: nginx-proxy
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx-proxy
+    spec:
+      containers:
+        - name: nginx-proxy
+          image: europe-west2-docker.pkg.dev/prj-ext-dev-pertcat-437314/nginx-proxy/nginx_proxy:latest
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 80
